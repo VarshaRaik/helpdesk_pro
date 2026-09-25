@@ -1,2 +1,4 @@
-<h1>Tickets#show</h1>
-<p>Find me in app/views/tickets/show.html.erb</p>
+<%= form_with model: [@ticket, @comment] do |form| %>
+  <%= form.text_area :body %>
+  <%= form.submit "Reply" %>
+<% end %>

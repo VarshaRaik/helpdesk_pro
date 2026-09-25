@@ -1,0 +1,34 @@
+<%= form_with model: @ticket do |form| %>
+  <% if @ticket.errors.any? %>
+    <div>
+      <% @ticket.errors.full_messages.each do |message| %>
+        <p><%= message %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.label :category_id %>
+    <%= form.collection_select :category_id, @categories, :id, :name %>
+  </div>
+
+  <div>
+    <%= form.label :priority %>
+    <%= form.select :priority, Ticket.priorities.keys.map { |p| [p.humanize, p] } %>
+  </div>
+
+  <%= form.file_field :attachments, multiple: true %>
+
+
+  <%= form.submit %>
+<% end %>

@@ -14,4 +14,22 @@ class User < ApplicationRecord
            foreign_key: :agent_id
 
   has_many :comments, dependent: :destroy
+
+  def self.ransackable_attributes(_auth_object = nil)
+    [
+      "active",
+      "created_at",
+      "email",
+      "id",
+      "name",
+      "phone",
+      "role",
+      "updated_at"
+    ]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    ["assigned_tickets", "comments", "created_tickets"]
+  end
 end
+
